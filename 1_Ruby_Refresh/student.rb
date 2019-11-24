@@ -1,25 +1,29 @@
+require_relative 'crud'
+
 class Student
+  include Crud
   attr_accessor :first_name, :last_name, :email, :username, :password
 
-  def initialize(first_name, last_name, email, username, password)
-    @first_name = first_name
-    @last_name = last_name
-    @email = email
+  def initialize(firstname, lastname, username, email, password)
+    @first_name = firstname
+    @last_name = lastname
     @username = username
+    @email = email
     @password = password
   end
 
   def to_s
-    "First Name: #{@first_name}, Last Name: #{@last_name}, Username: #{@username}, Email Address: #{@email}"
+    "First name: #{@first_name}, Last name: #{@last_name}, Username: #{@username},
+                  email address: #{@email}"
   end
 
 end
 
-james = Student.new("James", "Saunders", "jtsgithub@gmail.com", "JSaundersT", "password1")
-john = Student.new("John", "Smith", "johnsmith1@gmail.com", "JSmith69", "smith1990")
+mashrur = Student.new("Mashrur", "Hossain", "mashrur1", "mashrur@example.com",
+                      "password1")
+john = Student.new("John", "Doe", "john1", "john1@example.com",
+                      "password2")
 
-puts james
-puts john
-james.last_name = john.last_name
-puts "James has been altered"
-puts james
+hashed_password = mashrur.create_hash_digest(mashrur.password)
+
+puts hashed_password
